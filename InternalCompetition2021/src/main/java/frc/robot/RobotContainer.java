@@ -42,6 +42,11 @@ public class RobotContainer {
     JoystickButton shootOutButton = new JoystickButton(controller, 1);
     shootOutButton.whileHeld(IntakeCommands.shootOutCommand());
     shootOutButton.whileReleased(IntakeCommands.intakeStopCommand());
+
+    JoystickButton shootButton = new JoystickButton(controller, 2);
+    shootOutButton.whileHeld(ShootCommands.shoot());
+    shootOutButton.whileReleased(ShootCommands.stopShootCommand());
+
   }
 
   /**

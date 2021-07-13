@@ -16,7 +16,8 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
  */
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
-  public IntakeSystem intake == new IntakeSystem();
+  public IntakeSystem intake = new IntakeSystem();
+  public ShooterSystem shooter = new ShooterSystem();
   private RobotContainer m_robotContainer;
 
   /**

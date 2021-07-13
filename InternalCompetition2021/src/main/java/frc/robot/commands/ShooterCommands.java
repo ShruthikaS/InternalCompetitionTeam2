@@ -8,16 +8,16 @@ import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
-public class IntakeCommands extends CommandBase {
+public class ShooterCommands extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final IntakeSystem m_subsystem;
+  private final ShooterCommands m_subsystem;
 
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public IntakeCommands(IntakeSystem subsystem) {
+  public ShooterCommands(ShooterSystem subsystem) {
     m_subsystem = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
@@ -25,16 +25,12 @@ public class IntakeCommands extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public static Command discInCommand(){
-    return new InstantCommand(() -> Robot.intake.discIn(),Robot.intake);
+  public static Command shootCommand(){
+    return new InstantCommand(() -> Robot.shooter.shoot(),Robot.shoot);
   }
 
-  public static Command shootOutCommand(){
-    return new InstantCommand(() -> Robot.intake.shootOut(),Robot.intake);
-  }
-
-  public static Command stopIntakeCommand(){
-    return new InstantCommand(() -> Robot.intake.stopIntake(),Robot.intake);
+  public static Command stopShootCommand(){
+    return new InstantCommand(() -> Robot.shooter.stopShoot(),Robot.shoot);
   }
 
   public void initialize() {}
