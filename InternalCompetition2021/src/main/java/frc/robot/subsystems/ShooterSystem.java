@@ -4,19 +4,18 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.controller.PIDController;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj2.command.PIDSubsystem;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class ShooterSystem {
+public class ShooterSystem extends SubsystemBase {
  private WPI_TalonSRX shooterMotor = new WPI_TalonSRX(6);
  private final double MAX_OUTPUT = 0.7;
  
   public ShooterSystem() {
-    this.shooterMotor.setNeutralMode(NeutralMode.brake);       
+    this.shooterMotor.setNeutralMode(NeutralMode.Brake);       
     
   }
 
@@ -27,16 +26,5 @@ public class ShooterSystem {
 
   public void stopShoot(){
     this.shooterMotor.set(ControlMode.PercentOutput, 0);    
-  }
-
-  @Override
-  public void useOutput(double output, double setpoint) {
-    // Use the output here
-  }
-
-  @Override
-  public double getMeasurement() {
-    // Return the process variable measurement here
-    return 0;
   }
 }

@@ -5,12 +5,17 @@
 package frc.robot.commands;
 
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.IntakeSystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
+
+import frc.robot.Robot;
 
 /** An example command that uses an example subsystem. */
 public class IntakeCommands extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final IntakeSystem m_subsystem;
+  private final IntakeSystem intakeSystem;
 
   /**
    * Creates a new ExampleCommand.
@@ -18,13 +23,11 @@ public class IntakeCommands extends CommandBase {
    * @param subsystem The subsystem used by this command.
    */
   public IntakeCommands(IntakeSystem subsystem) {
-    m_subsystem = subsystem;
+    intakeSystem = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
   }
 
-  // Called when the command is initially scheduled.
-  @Override
   public static Command discInCommand(){
     return new InstantCommand(() -> Robot.intake.discIn(),Robot.intake);
   }
@@ -37,6 +40,8 @@ public class IntakeCommands extends CommandBase {
     return new InstantCommand(() -> Robot.intake.stopIntake(),Robot.intake);
   }
 
+  // Called when the command is initially scheduled.
+  @Override
   public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.

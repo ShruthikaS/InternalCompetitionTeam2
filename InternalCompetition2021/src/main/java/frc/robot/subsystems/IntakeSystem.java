@@ -4,23 +4,22 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.controller.PIDController;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj2.command.PIDSubsystem;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class IntakeSystem {
+public class IntakeSystem extends SubsystemBase {
  private WPI_TalonSRX intakeMotor = new WPI_TalonSRX(5);
  private final double MAX_OUTPUT = 0.7;
  
   public IntakeSystem() {
-    this.intakeMotor.setNeutralMode(NeutralMode.brake);       
+    this.intakeMotor.setNeutralMode(NeutralMode.Brake);       
     
   }
 
-  public void diskIn(){
+  public void discIn(){
     this.intakeMotor.set(ControlMode.PercentOutput, MAX_OUTPUT);    
   }
 
@@ -30,16 +29,5 @@ public class IntakeSystem {
 
   public void stopIntake(){
     this.intakeMotor.set(ControlMode.PercentOutput, 0);    
-  }
-
-  @Override
-  public void useOutput(double output, double setpoint) {
-    // Use the output here
-  }
-
-  @Override
-  public double getMeasurement() {
-    // Return the process variable measurement here
-    return 0;
   }
 }
