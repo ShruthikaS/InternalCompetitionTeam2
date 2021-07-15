@@ -10,7 +10,9 @@ import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.commands.*;
 import edu.wpi.first.wpilibj2.command.Command;
-
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -26,10 +28,23 @@ public class RobotContainer {
   private Joystick controller = new Joystick(0);
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
+  private Command defaultDrive = new RunCommand(
+    () -> Robot.drive.tank(controller.getRawAxis(1), controller.getRawAxis(3)), 
+    Robot.drive
+    );
+
+    private Command toggleTurbCommand = new InstantCommand(
+      () -> Robot.drive.toggleTurbo(),
+      Robot.drive
+    );
+
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
+
+    // configure default drive commands
+    configureDefaultCommands();
   }
 
   /**
@@ -47,11 +62,23 @@ public class RobotContainer {
     shootOutButton.whileHeld(IntakeCommands.shootOutCommand());
     shootOutButton.whenReleased(IntakeCommands.stopIntakeCommand());
 
-    JoystickButton shootButton = new JoystickButton(controller, 2);
-    shootOutButton.whileHeld(ShooterCommands.shootCommand());
-    shootOutButton.whenReleased(ShooterCommands.stopShootCommand());
+    JoystickButton shooterButton = new JoystickButton(controller, 2);
+    shooterButton.whileHeld(ShooterCommands.shootCommand());
+    shooterButton.whenReleased(ShooterCommands.stopShootCommand());
+
+    // Turbo is a button that when held, will allow the driver to drive at faster speeds when needed.
+    JoystickButton turboButton = new JoystickButton(controller, 3);
+    turboButton.whenPressed(toggleTurbCommand);
+    turboButton.whenReleased(toggleTurbCommand);
 
   }
+
+  private void configureDefaultCommands() {
+		CommandScheduler scheduler = CommandScheduler.getInstance();
+
+		scheduler.setDefaultCommand(Robot.drive, defaultDrive);
+
+	}
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
