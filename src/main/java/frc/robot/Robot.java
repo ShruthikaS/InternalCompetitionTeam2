@@ -18,6 +18,7 @@ import frc.robot.subsystems.*;
  */
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
+  public static DriveSystem drive = new DriveSystem();
   public static IntakeSystem intake = new IntakeSystem();
   public static ShooterSystem shooter = new ShooterSystem();
   private RobotContainer m_robotContainer;
@@ -59,6 +60,7 @@ public class Robot extends TimedRobot {
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
   public void autonomousInit() {
+    drive.setPID(DriveSystem.POSITION_P, DriveSystem.POSITION_I, DriveSystem.POSITION_D);
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
     // schedule the autonomous command (example)
@@ -77,6 +79,8 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
+    drive.setPID(DriveSystem.VELOCITY_P, DriveSystem.VELOCITY_I, DriveSystem.VELOCITY_D);
+
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
