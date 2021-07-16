@@ -54,13 +54,13 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    JoystickButton discInButton = new JoystickButton(controller, 0);
-    discInButton.whileHeld(IntakeCommands.discInCommand());
-    discInButton.whenReleased(IntakeCommands.stopIntakeCommand());
+    JoystickButton hopperInButton = new JoystickButton(controller, 0);
+    hopperInButton.whileHeld(HopperCommands.hopperInCommand());
+    hopperInButton.whenReleased(HopperCommands.stopHopperCommand());
 
-    JoystickButton shootOutButton = new JoystickButton(controller, 1);
-    shootOutButton.whileHeld(IntakeCommands.shootOutCommand());
-    shootOutButton.whenReleased(IntakeCommands.stopIntakeCommand());
+    JoystickButton hopperOutButton = new JoystickButton(controller, 1);
+    hopperOutButton.whileHeld(HopperCommands.hopperOutCommand());
+    hopperOutButton.whenReleased(HopperCommands.stopHopperCommand());
 
     JoystickButton shooterButton = new JoystickButton(controller, 2);
     shooterButton.whileHeld(ShooterCommands.shootCommand());
@@ -87,6 +87,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return m_autoCommand;
+    return AutoCommands.closeAuto();
+    //return AutoCommands.farAuto();
   }
 }

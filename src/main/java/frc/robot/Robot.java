@@ -19,7 +19,7 @@ import frc.robot.subsystems.*;
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   public static DriveSystem drive = new DriveSystem();
-  public static IntakeSystem intake = new IntakeSystem();
+  public static HopperSystem hopper = new HopperSystem();
   public static ShooterSystem shooter = new ShooterSystem();
   private RobotContainer m_robotContainer;
 
