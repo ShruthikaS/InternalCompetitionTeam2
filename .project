@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>InternalCompetition2021</name>
-	<comment>Project InternalCompetition2021 created by Buildship.</comment>
+	<name>InternalCompetitionTeam2-Imported</name>
+	<comment>Project InternalCompetitionTeam2-Imported created by Buildship.</comment>
 	<projects>
 	</projects>
 	<buildSpec>
@@ -22,7 +22,7 @@
 	</natures>
 	<filteredResources>
 		<filter>
-			<id>1625180336274</id>
+			<id>1626543295787</id>
 			<name></name>
 			<type>30</type>
 			<matcher>
