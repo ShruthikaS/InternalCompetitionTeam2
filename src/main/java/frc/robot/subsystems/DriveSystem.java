@@ -32,7 +32,11 @@ public class DriveSystem extends PIDSubsystem {
   // will allow the robot to go even faster if needed
   private boolean turbo = false;
 
-  private final double TICKS_PER_INCH = 40; // actual value depends on encoder used and wheel size. Number of encoder ticks per every inch moved by the wheel
+  // wheel diameter: 6.0 inches
+  // wheel cirumference: 18.8496
+  // common encoder ticks per rotation: 4096.0 
+  // ticks per inch: 4096 / 18.8496
+  private final double TICKS_PER_INCH = 217.306; // actual value depends on encoder used and wheel size. Number of encoder ticks per every rotation moved by the wheel
 
   // PID constant values. Would need to test new values
   // for teleop
